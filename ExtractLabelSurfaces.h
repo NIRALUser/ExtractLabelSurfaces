@@ -16,7 +16,11 @@
 #include <stdlib.h>
 #include <sstream>
 
+
 int ExtractPointData(std::string vtkLabelFile, std::string labelNameInfo, std::string arrayName) ;
 int TranslateToLabelNumber(std::string labelNameInfo, std::string labelNumberInfo) ;
 int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo) ;
 vtkSmartPointer<vtkPolyData> ReadVTKFile(std::string vtkFile) ;
+
+std::string IntToString ( int number ) ;
+std::string DoubleToString (double number) ;

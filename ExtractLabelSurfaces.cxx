@@ -209,7 +209,7 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
         int nbPolys=0;
         //Rename label file to create
         replace(labelName.begin(),labelName.end(),' ','_') ;
-        labelName += ".asc" ;
+        labelName += "ReadAllPolys.asc" ;
 
         //Write the ASCII file corresponding to one surface / one label
         outputFile.open(labelName.c_str() , std::ios::out) ;
@@ -265,7 +265,6 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
         readFile.open(labelName.c_str() , std::ios::in | std::ios::out) ;
         if(readFile.good())
         {
-            std::cout<<"Hello"<<std::endl ;
             getline(readFile,outputLine) ; //get first line - informations file
             getline(readFile,outputLine) ; //get 2nd line - nbPoints and nbPolys
         }

@@ -4,7 +4,8 @@ int ExtractPointData(std::string vtkLabelFile, std::string labelNameInfo, std::s
 {
     std::cout<<"Start ExtractPointData..."<<std::endl ;
     //Read VTK file
-    vtkSmartPointer< vtkPolyData > polyData = ReadVTKFile(vtkLabelFile) ;
+    vtkSmartPointer< vtkPolyData > polyData = vtkSmartPointer< vtkPolyData >::New() ;
+    polyData = ReadVTKFile(vtkLabelFile) ;
     //Checked that array name specified exists in this vtk file
     vtkPointData* pointdata =  polyData->GetPointData() ;
     int arrayId=0 ;
@@ -61,21 +62,22 @@ int TranslateToLabelNumber(std::string labelNameInfo, std::string labelNumberInf
     std::cout<<"Start TranslateToLabelNumber..."<<std::endl ;
 
     std::ifstream inputFile ;
-    inputFile.open(labelNameInfo.c_str(), std::ios::in) ;
     std::ofstream outputFile ;
-    outputFile.open(labelNumberInfo.c_str() , std::ios::out) ;
-    std::ofstream logFile ;
-    logFile.open("logLabelTable" , std::ios::out) ;
 
     std::string labelLine ;
+
     //Define map containing labels and a list of points associated to them
     std::map<std::string, int> labelMap ;
     //Map iterator
     std::map< std::string , int >::const_iterator mit,mend ;
+
     int labelNumber=0 ;
+
     //Extract labels and points associated
+    inputFile.open(labelNameInfo.c_str(), std::ios::in) ;
     if(inputFile.good()) //file can be open
     {
+        outputFile.open(labelNumberInfo.c_str() , std::ios::out) ;
         if(outputFile.good())
         {
             outputFile << "#Text file containing label number information for each point - output of TranslateToLabelNumber tool \n" ;
@@ -110,6 +112,10 @@ int TranslateToLabelNumber(std::string labelNameInfo, std::string labelNumberInf
         std::cout<<"Cannot open the inputfile "<<std::endl ;
         return EXIT_FAILURE ;
     }
+    inputFile.close() ;
+
+    std::ofstream logFile ;
+    logFile.open("logLabelTable" , std::ios::out) ;
     //Write matching table between labels names and labels numbers
     if(logFile.good())
     {
@@ -125,6 +131,7 @@ int TranslateToLabelNumber(std::string labelNameInfo, std::string labelNumberInf
         return EXIT_FAILURE ;
     }
     logFile.close() ;
+
     std::cout<<"Number of labels : "<<labelNumber<<std::endl ;
     std::cout<<"TranslateToLabelNumber Done !\n"<<std::endl ;
     return EXIT_SUCCESS ;
@@ -133,11 +140,15 @@ int TranslateToLabelNumber(std::string labelNameInfo, std::string labelNumberInf
 int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
 {
     std::cout<<"Start CreateSurfaceLabelFiles..."<<std::endl ;
+
     //Read labelInformation file
     std::ifstream inputFile ;
-    inputFile.open(labelNumberInfo.c_str(), std::ios::in) ;
+
     std::string labelLine ;
     int nbLinesLabels=0 ;
+
+    //Find number of lines (information label for each points )
+    inputFile.open(labelNumberInfo.c_str(), std::ios::in) ;
     if(inputFile.good())
     {
         getline(inputFile,labelLine) ; //get information line
@@ -161,6 +172,7 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
     vtkSmartPointer< vtkPolyData > polyData = vtkSmartPointer< vtkPolyData >::New() ;
     polyData = ReadVTKFile(vtkFile) ;
 
+    //Find number of Points in vtkFile
     int nbPoints=0 ;
     nbPoints=polyData->GetNumberOfPoints() ;
 
@@ -183,8 +195,9 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
     vtkSmartPointer<vtkIdList> cellIdList = vtkSmartPointer<vtkIdList>::New() ;
     //Id of each point
     int idPoint=0; //point id
-    inputFile.open(labelNumberInfo.c_str(), std::ios::in) ;
+
     //Extract labels and points associated
+    inputFile.open(labelNumberInfo.c_str(), std::ios::in) ;
     if(inputFile.good())
     {
         getline(inputFile,labelLine) ; //format line
@@ -277,6 +290,7 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
         std::string nbPolyStr = IntToString(nbPolys) ;
         outputVect.at(1) += nbPolyStr + "\n";
 
+        //Write in the output file
         outputFile.open(labelName.c_str() , std::ios::out) ;
         if(outputFile.good())
         {
@@ -284,7 +298,6 @@ int CreateSurfaceLabelFiles(std::string vtkFile, std::string labelNumberInfo)
             {
                 outputFile << *vit ;
             }
-
         }
         else
         {
@@ -434,6 +447,6 @@ int main ( int argc, char *argv[] )
         std::cout<<"Wrong call" ;
         return EXIT_FAILURE ;
     }
-    std::cout<<"Done !"<<std::endl ;
+    std::cout<<"All done !"<<std::endl ;
     return EXIT_SUCCESS ;
 }

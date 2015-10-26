@@ -340,7 +340,6 @@ std::string IntToString(int number)
     result = convert.str() ;
     return result ;
 }
-
 std::string DoubleToString(double number)
 {
     std::string result ;

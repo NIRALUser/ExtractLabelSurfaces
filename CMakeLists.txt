@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
  
-PROJECT(PolydataTranslate)
+PROJECT(ExtractLabelSurfaces)
 option(BUILD_TESTING "Build the testing tree" OFF)
+
+find_package(RapidJSON REQUIRED)
+include_directories("${RAPIDJSON_INCLUDE_DIRS}")
 
 # Find SlicerExecutionModel
 find_package(SlicerExecutionModel REQUIRED)
@@ -12,14 +15,14 @@ find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
 
-set(PolydataTranslate_SOURCE PolydataTranslate.cxx)
+set(ExtractLabelSurfaces_SOURCE ExtractLabelSurfaces.cxx)
 
-set(PolydataTranslate_HEADER PolydataTranslate.h)
+set(ExtractLabelSurfaces_HEADER ExtractLabelSurfaces.h)
 
 SEMMacroBuildCLI(
-  NAME PolydataTranslate
+  NAME ExtractLabelSurfaces
   EXECUTABLE_ONLY
-  ADDITIONAL_SRCS ${PolydataTranslate_SOURCE}
+  ADDITIONAL_SRCS ${ExtractLabelSurfaces_SOURCE}
   TARGET_LIBRARIES ${VTK_LIBRARIES}
   )
 

@@ -434,13 +434,11 @@ std::map <std::string , label> ReadLabelTranslationTable ( std::string labelTran
     // 1. Parse a JSON string into DOM.
     FILE* fp = fopen(labelTranslationTable.c_str(), "r"); // non-Windows use "r"
     char readBuffer[65536];
-
     //Output Map containing all info about labels
     std::map <std::string , label> labelTranslationMap ;
     std::string name ;
     int AAL_ID ;
     std::string labelValue ;
-
 
     if(fp == NULL)
     {
@@ -516,6 +514,7 @@ vtkSmartPointer <vtkPolyData> ReadVTKFile ( std::string vtkFile )
     //Checked if surface file with color no containing errors
     if ( reader->GetErrorCode() != 0 )
     {
+        std::cout<<reader->GetErrorCode()<<std::endl;
         std::cerr << "Unable to open input file: " << vtkFile.c_str() << std::endl ;
         return 0 ;
     }

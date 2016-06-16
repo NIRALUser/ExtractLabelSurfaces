@@ -280,7 +280,7 @@ int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo 
     int arrayId = 0 ;
     for( unsigned i = 0 ; i < pointdata->GetNumberOfArrays() ; i++ )
     {
-        if( pointdata->GetArrayName(i) == "indexLabel" )
+        if( std::string("indexLabel").compare(pointdata->GetArrayName(i)) == 0 )
         {
             arrayId = i ;
         }
@@ -344,12 +344,12 @@ int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo 
             int cellValue[nbCompoCell] ;
             int polyFound = 0 ;
 
-            std::list <int>::iterator iter[nbCompoCell] ;
+            std::vector< std::list <int>::iterator > iter;
 
             for( int i = 0 ; i < nbCompoCell ; i++ )
             {
                 cellValue[i] = cellIdList->GetId(i) ;
-                iter[i] = find( listIdPoint.begin() , listIdPoint.end() , cellValue[i] ) ;
+                iter.push_back(find( listIdPoint.begin() , listIdPoint.end() , cellValue[i] ));
                 int valArray = index->GetValue(cellValue[i]) ;
                 if( iter[i] != listIdPoint.end() && valArray == labelNumber )
                 {

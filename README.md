@@ -111,7 +111,7 @@ This tool creates the surfaces for each brain regions (colored in a vtk file) an
 
 ### Input files
 
-1. parcellationTable.json 
+#### 1. parcellationTable.json 
 ----
 [
   {
@@ -179,11 +179,12 @@ This tool creates the surfaces for each brain regions (colored in a vtk file) an
     "labelValue": "19 164 195", 
     "AAL_ID": 5
   }
-  ]
+ ]
 ----
-2. VTK surface containning a colorTable and labels id known.
 
-3. If first surfaces doesn't contain label, add other vtk surface with same mesh and a colorTable
+####2. VTK surface containning a colorTable and labels id known.
+
+####3. If first surfaces doesn't contain label, add other vtk surface with same mesh and a colorTable
 
 
 ### Execution
@@ -193,7 +194,7 @@ This tool creates the surfaces for each brain regions (colored in a vtk file) an
 
 ### Sample output
 
-1. labelListName.txt
+####1. labelListName.txt
 ----
 #####Text file containing label name information for each point - output of ExtractPointData tool 
 204 150 68

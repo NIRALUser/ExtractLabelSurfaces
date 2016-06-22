@@ -178,8 +178,7 @@ This tool creates the surfaces for each brain regions (colored in a vtk file) an
     ], 
     "labelValue": "19 164 195", 
     "AAL_ID": 5
-  }
- ]
+  }]
 ----
 
 ####2. VTK surface containning a colorTable and labels id known.

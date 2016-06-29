@@ -112,6 +112,7 @@ This tool creates the surfaces for each brain regions (colored in a vtk file) an
 ### Input files
 
 #### 1. parcellationTable.json 
+(example 5 ROIs, atlas AAL90 )
 [ <br/>
   { <br/>
     "VisuOrder": 78, <br/>

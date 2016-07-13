@@ -10,13 +10,13 @@ set(EXTERNAL_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} CACHE PATH "Select whe
 option(USE_SYSTEM_SlicerExecutionModel "Build using an externally defined version of SlicerExecutionModel"  OFF)
 option(USE_SYSTEM_VTK "Build using an externally defined version of VTK" OFF)
 option(USE_SYSTEM_BRAINSTools "Build using an externally defined version of DTIProcess" OFF)
-option(USE_SYSTEM_rapidjson "Build using an externally defined version of rapidjson" OFF)
+option(USE_SYSTEM_RapidJSON "Build using an externally defined version of RapidJSON" OFF)
 
 #-----------------------------------------------------------------------------
 # Superbuild option(s)
 #-----------------------------------------------------------------------------
 
-set(${PRIMARY_PROJECT_NAME}_DEPENDENCIES ${ITK_EXTERNAL_NAME} VTK SlicerExecutionModel rapidjson)
+set(${PRIMARY_PROJECT_NAME}_DEPENDENCIES ${ITK_EXTERNAL_NAME} VTK SlicerExecutionModel RapidJSON)
 
 
 

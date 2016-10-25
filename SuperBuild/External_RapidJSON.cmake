@@ -56,6 +56,7 @@ if(NOT ( DEFINED "USE_SYSTEM_${extProjName}" AND "${USE_SYSTEM_${extProjName}}" 
 
   set(${proj}_CMAKE_OPTIONS
       -DCMAKE_INSTALL_PREFIX=${EXTERNAL_BINARY_DIRECTORY}/${proj}-install
+      -DBUILD_TESTING:BOOL=OFF
     )
   ### --- End Project specific additions
   set(${proj}_REPOSITORY "${git_protocol}://github.com/miloyip/rapidjson.git")

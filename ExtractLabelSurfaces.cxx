@@ -52,7 +52,7 @@ int ExtractPointData ( std::string vtkLabelFile , std::string labelNameInfo , st
             pointdata->GetArray(arrayId)->GetTuple(j,vec) ;
             for(int k = 0 ; k < arrayType ; k++)
             {
-                outputFile << vec[k] ;
+                outputFile << (int)vec[k] ;
                 if( k < arrayType-1 )
                 {
                     outputFile << " " ;

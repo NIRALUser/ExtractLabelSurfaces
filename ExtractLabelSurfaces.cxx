@@ -300,7 +300,7 @@ int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo 
         vtkSmartPointer <vtkThresholdPoints> thresholdPoints= vtkSmartPointer <vtkThresholdPoints>::New() ;
         thresholdPoints->SetInputData(polyData) ;
         thresholdPoints->ThresholdBetween(labelNumber-0.5,labelNumber+0.5) ;
-        thresholdPoints->SetInputArrayToProcess( arrayId , 0 , 0 , vtkDataObject::FIELD_ASSOCIATION_POINTS , "indexLabel" ) ;
+        thresholdPoints->SetInputArrayToProcess( 0 , 0 , 0 , vtkDataObject::FIELD_ASSOCIATION_POINTS , "indexLabel" ) ;
         thresholdPoints->Update() ;
         vtkPolyData* thresholdedPolydataPoints = thresholdPoints->GetOutput() ;
 

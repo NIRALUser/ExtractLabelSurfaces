@@ -174,7 +174,7 @@ int TranslateToLabelNumber ( std::string labelNameInfo , std::string labelNumber
 }
 
 //Tool 3 : CreateSurfaceLabelFiles -> create one ASCII file per label
-int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo , std::string prefix, bool overlapping, std::string  ignoreLabel, bool useTranslationTable,  std::string labelTranslationTable)
+int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo , std::string prefix, bool overlapping, std::string  ignoreLabel, bool useTranslationTable,  std::string labelTranslationTable, std::string outputSurfaceDirectory)
 {
     std::cout << "Start CreateSurfaceLabelFiles..." << std::endl ;
     int nbIgnored = 0;
@@ -286,7 +286,7 @@ int CreateSurfaceLabelFiles ( std::string vtkFile , std::string labelNumberInfo 
         }
     }
 
-    std::string directory = "labelSurfaces" ;
+    std::string directory = outputSurfaceDirectory;
     vtksys::SystemTools::MakeDirectory(directory) ;
     //Threshold the polyData
     for(it_labelVect=labelVect.begin() , end_labelVect=labelVect.end() ; it_labelVect!=end_labelVect ; it_labelVect++)
@@ -597,7 +597,7 @@ int main ( int argc, char *argv[] )
         {
             ExtractPointData( vtkLabelFile , labelNameInfo , arrayName ) ;
             TranslateToLabelNumber( labelNameInfo , labelNumberInfo, useTranslationTable, labelTranslationTable, ignoreLabel ) ;
-            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable ) ;
+            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable, outputSurfaceDirectory ) ;
         }
         else
         {
@@ -624,7 +624,7 @@ int main ( int argc, char *argv[] )
         if( !labelNameInfo.empty() && !labelNumberInfo.empty() && !vtkFile.empty() )
         {
             TranslateToLabelNumber( labelNameInfo, labelNumberInfo, useTranslationTable, labelTranslationTable, ignoreLabel ) ;
-            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable ) ;
+            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable, outputSurfaceDirectory ) ;
         }
         else
         {
@@ -637,7 +637,7 @@ int main ( int argc, char *argv[] )
         std::cout << "Run CreateSurfaceLabelFiles tool ...\n" << std::endl ;
         if( !labelNumberInfo.empty() && !vtkFile.empty() )
         {
-            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable ) ;
+            CreateSurfaceLabelFiles( vtkFile , labelNumberInfo , prefix , overlapping, ignoreLabel, useTranslationTable, labelTranslationTable, outputSurfaceDirectory ) ;
         }
         else
         {

@@ -24,13 +24,6 @@ ProjectDependancyPush(CACHED_proj ${proj})
 set(extProjName VTK) #The find_package known name
 set(proj        VTK) #This local name
 
-
-set(VTK_VERSION_MAJOR 6 CACHE STRING "Choose the expected VTK major version to build Slicer (5 or 6).")
-# Set the possible values of VTK major version for cmake-gui
-set_property(CACHE VTK_VERSION_MAJOR PROPERTY STRINGS "5" "6")
-
-set(${extProjName}_REQUIRED_VERSION "6.3.0")  #If a required version is necessary, then set this, else leave blank
-
 # Sanity checks
 #if(DEFINED ${extProjName}_DIR AND NOT EXISTS ${${extProjName}_DIR})
 #  message(FATAL_ERROR "${extProjName}_DIR variable is defined but corresponds to non-existing directory (${${extProjName}_DIR})")
@@ -65,7 +58,7 @@ if(NOT ( DEFINED "USE_SYSTEM_${extProjName}" AND "${USE_SYSTEM_${extProjName}}" 
     )
   ### --- End Project specific additions
 
-  set(${proj}_GIT_TAG "v6.3.0")
+  set(${proj}_GIT_TAG "v8.1.1")
   set(${proj}_REPOSITORY ${git_protocol}://vtk.org/VTK.git)
 
   ExternalProject_Add(${proj}
@@ -90,7 +83,7 @@ if(NOT ( DEFINED "USE_SYSTEM_${extProjName}" AND "${USE_SYSTEM_${extProjName}}" 
     )
 
 
-  set(${extProjName}_DIR ${CMAKE_BINARY_DIR}/${proj}-install/lib/cmake/vtk-6.3)
+  set(${extProjName}_DIR ${CMAKE_BINARY_DIR}/${proj}-install/lib/cmake/vtk-8.1)
   
 
 else()

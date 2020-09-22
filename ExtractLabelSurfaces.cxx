@@ -134,7 +134,12 @@ int TranslateToLabelNumber ( std::string labelNameInfo , std::string labelNumber
                 }
                 else
                 {
-                    outputFile << labelMap[newlabel].labelNumber<<"\n" ;
+                    if( labelMap.find(newlabel) != labelMap.end() ){
+                        outputFile << labelMap[newlabel].labelNumber<<"\n" ;    
+                    }else{
+                        outputFile << "-1" <<"\n" ;
+                    }
+                    
                 }
                 getline( inputFile , labelLine ) ;
                 while( labelLine[0] == '#' )

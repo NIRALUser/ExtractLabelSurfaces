@@ -4,7 +4,7 @@
   <title>ExtractLabelSurfaces</title>
 
   <description>ExtractLabelSurfaces is a tool which extracted labels surfaces from a surface containing labels</description>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <contributor>Danaele Puechmaille, Francois Budin, Juan Carlos Prieto, Martin Styner, Adrien Boucaud</contributor> 
   <acknowledgements><![CDATA[This work is part of the National Alliance for Medical Image Computing (NAMIC), funded by the National Institutes of Health through the NIH Roadmap for Medical Research, Grants U01 MH070890 - U54 HD079124 - R01 MH091351.]]></acknowledgements>
 
